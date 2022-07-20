@@ -9,18 +9,51 @@
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
 
-var apiKey = `6d8151bd752a5b15dbeefd7a65a2d255`;
-var userSearch = "Austin";
-var weatherAPIUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
-var geoAPIurl = `http://api.openweathermap.org/geo/1.0/direct?q=${userSearch}&limit=5&appid=${apiKey}`;
+var todaysDateEl = document.getElementById('#todays-date');
+var DayOneEl = document.getElementById('.day-1');
+var DayTwoEl = document.getElementById('.day-2');
+var DayThreeEl = document.getElementById('.day-3');
+var DayFourEl = document.getElementById('.day-4');
+var dayFiveEl = document.getElementById('.day-5');
+var tempEl = document.getElementById('#todays-temp');
+var windEl = document.getElementById('#todays-wind');
+var humidityEl = document.getElementById('#todays-humidity');
+var uvEl = document.getElementById('#todays-uv-index');
+
+
+
+
+
+
+
+const apiKey = `5a9e1210be78a52faa1f906df226b3b3`;
+var userSearch = " ";
+var weatherAPIUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+
+var geoAPIurl = `https://api.openweathermap.org/geo/1.0/direct?q=${userSearch}&limit=5&appid=${apiKey}`;
 // var testUrl = `http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=${apiKey}`
 // Value from search form
 var lat;
 var lon;
 
-
+// displays time to todays forcast and five-day forcast
 var today = moment();
 $("#todays-date").text(today.format("MMM Do, YYYY"));
+
+let tomorrow  = moment().add(1,'days');
+$('.day-1').text(tomorrow.format( 'LL'));
+
+let TwoDays  = moment().add(2,'days');
+$('.day-2').text(TwoDays.format( 'LL'));
+
+let ThreeDays  = moment().add(3,'days');
+$('.day-3').text(ThreeDays.format( 'LL'));
+
+let FourDays  = moment().add(4,'days');
+$('.day-4').text(FourDays.format( 'LL'));
+
+let FiveDay  = moment().add(5,'days');
+$('.day-5').text(FiveDay.format( 'LL'));
 
 
 
@@ -50,6 +83,7 @@ function currentForecast() {
     .then(function (data) {
       console.log(data);
       // APPEND TO PAGE
+
     });
 }
 currentForecast();
