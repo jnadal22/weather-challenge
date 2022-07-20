@@ -3,7 +3,18 @@
     margin: 0px;
 }
 
+.container-fluid {
+  text-align: center;
+  background-color: blue;
+}
 
+.navbar-brand {
+  padding-left: 25%;
+  font-size: 100px;
+}
+.search-for-city {
+  font-size: 25px;
+}
 
 
 .fiveday-container .card {
@@ -15,4 +26,9 @@
   display: flex !important;
   flex-direction: row !important;
   justify-content: space-between;
+}
+
+#searchBtn {
+  color: orange;
+  background-color: black;
 }
