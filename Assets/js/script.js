@@ -9,54 +9,44 @@
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
 
-var todaysDateEl = document.getElementById('#todays-date');
-var DayOneEl = document.querySelector('.day-1');
-var DayTwoEl = document.getElementById('.day-2');
-var DayThreeEl = document.getElementById('.day-3');
-var DayFourEl = document.getElementById('.day-4');
-var dayFiveEl = document.getElementById('.day-5');
-var tempEl = document.getElementById('#todays-temp');
-var windEl = document.getElementById('#todays-wind');
-var humidityEl = document.getElementById('#todays-humidity');
-var uvEl = document.getElementById('#todays-uv-index');
-
+var todaysDateEl = document.getElementById("#todays-date");
+var DayOneEl = document.querySelector(".day-1");
+var DayTwoEl = document.getElementById(".day-2");
+var DayThreeEl = document.getElementById(".day-3");
+var DayFourEl = document.getElementById(".day-4");
+var dayFiveEl = document.getElementById(".day-5");
+var tempEl = document.getElementById("#todays-temp");
+var windEl = document.getElementById("#todays-wind");
+var humidityEl = document.getElementById("#todays-humidity");
+var uvEl = document.getElementById("#todays-uv-index");
 
 let lat;
 let lon;
 
-
-
 const apiKey = `5a9e1210be78a52faa1f906df226b3b3`;
 var userSearch = "Austin";
 
-
-
-
 // var testUrl = `http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=${apiKey}`
 // Value from search form
-
 
 // displays time to todays forcast and five-day forcast
 var today = moment();
 $("#todays-date").text(today.format("MMM Do, YYYY"));
 
-let tomorrow  = moment().add(1,'days');
-$('.day-1').text(tomorrow.format( 'LL'));
+let tomorrow = moment().add(1, "days");
+$(".day-1").text(tomorrow.format("LL"));
 
-let TwoDays  = moment().add(2,'days');
-$('.day-2').text(TwoDays.format( 'LL'));
+let TwoDays = moment().add(2, "days");
+$(".day-2").text(TwoDays.format("LL"));
 
-let ThreeDays  = moment().add(3,'days');
-$('.day-3').text(ThreeDays.format( 'LL'));
+let ThreeDays = moment().add(3, "days");
+$(".day-3").text(ThreeDays.format("LL"));
 
-let FourDays  = moment().add(4,'days');
-$('.day-4').text(FourDays.format( 'LL'));
+let FourDays = moment().add(4, "days");
+$(".day-4").text(FourDays.format("LL"));
 
-let FiveDay  = moment().add(5,'days');
-$('.day-5').text(FiveDay.format( 'LL'));
-
-
-
+let FiveDay = moment().add(5, "days");
+$(".day-5").text(FiveDay.format("LL"));
 
 // document.getElementById("#searchTerm").value
 function getLatLon() {
@@ -73,12 +63,12 @@ function getLatLon() {
       lon = data[0].lon.toFixed(2);
       console.log(lat);
       console.log(lon);
-      currentForecast(lat,lon);
+      currentForecast(lat, lon);
     });
 }
 getLatLon();
 
-function currentForecast(lat,lon) {
+function currentForecast(lat, lon) {
   var weatherAPIUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
   fetch(weatherAPIUrl)
     .then(function (response) {
@@ -88,36 +78,33 @@ function currentForecast(lat,lon) {
       console.log(data);
       // APPEND TO PAGE
       populateHTML(data.list);
-
     });
 }
-function populateHTML(data){
- for(i = 0; i < 40; i++){
-   if(i % 8 === 0){
-    var temperature = ((data[i].main.temp - 273.15) * 9/5 + 32).toFixed(2) ;
-    var wind = data[i].wind.deg;
-    var humidity = data[i].main.humidity;
+function populateHTML(data) {
+  for (i = 0; i < 40; i++) {
+    if (i % 8 === 0) {
+      var temperature = (((data[i].main.temp - 273.15) * 9) / 5 + 32).toFixed(
+        2
+      );
+      var wind = data[i].wind.deg;
+      var humidity = data[i].main.humidity;
 
-    var windDiv = document.createElement('div');
-    var tempDiv = document.createElement('div');
-    var humidityDiv = document.createElement('div');
+      var windDiv = document.createElement("div");
+      var tempDiv = document.createElement("div");
+      var humidityDiv = document.createElement("div");
 
-windDiv.textContent = wind;
-tempDiv.textContent = temperature;
-humidityDiv.textContent = humidity;
+      windDiv.textContent = wind;
+      tempDiv.textContent = temperature;
+      humidityDiv.textContent = humidity;
 
-DayOneEl.appendChild(windDiv);
-DayOneEl.appendChild(tempDiv);
-DayOneEl.appendChild(humidityDiv);
-
-
-
-
-
-
-
-   }
-   
- }
+      DayOneEl.appendChild(windDiv);
+      DayOneEl.appendChild(tempDiv);
+      DayOneEl.appendChild(humidityDiv);
+    }
+  }
 }
-
+ function userSearch(){
+   if(localStorage.userSearch){
+     localStorage.getItem
+   }
+ }
